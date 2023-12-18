@@ -9,7 +9,9 @@ import { ContactComponent } from './contact/contact.component';
 import { AboutComponent } from './about/about.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { CoursesComponent } from './courses/courses.component';
-import { CoursesDetailComponent } from './courses-detail/courses-detail.component';
+import { ContactInfoComponent } from './contact-info/contact-info.component';
+import { ContactDetailsComponent } from './contact-details/contact-details.component';
+
 
 
 const routes: Routes = [
@@ -18,16 +20,18 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'courses',
-    component: CoursesComponent
-  },
-  {
-    path: 'courses/:course',
-    component: CoursesDetailComponent
-  },
-  {
     path: 'contact',
-    component: ContactComponent
+    component: ContactComponent,
+    children: [
+      {
+        path: '',
+        component: ContactInfoComponent
+      },
+      {
+        path:'details',
+        component: ContactDetailsComponent
+      }
+    ]
   },
   {
     path: 'about',
@@ -52,7 +56,8 @@ const routes: Routes = [
     AboutComponent,
     PageNotFoundComponent,
     CoursesComponent,
-    CoursesDetailComponent
+    ContactInfoComponent,
+    ContactDetailsComponent,
   ],
   imports: [
     BrowserModule,
